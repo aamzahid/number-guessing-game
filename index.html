@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Guessing Game</title>
+</head>
+
+<style>
+    body{
+        text-align: center;
+        background-color: rgb(175, 196, 214);
+        margin: auto;
+        width: fit-content;
+    }
+    h1{
+        color: rgb(2, 2, 100);
+    }
+    button{
+        background-color: rgb(18, 145, 177);
+        color: white;
+        border-radius: 5px;
+       
+    }
+</style>
+<body>
+    <h1>Number Guessing Game</h1>
+    <button id="startButton">Start Game</button>
+
+    <script>
+               document.getElementById("startButton").addEventListener("click", function() {
+            let low = 1;
+            let high = 10;
+            let correct_ans = Math.floor(Math.random() * (high - low + 1)) + low;
+            let chances = 3;
+            let userWon = false;
+
+            for (let i = 0; i < chances; i++) {
+                let userGuess = prompt(`Guess the number between ${low} and ${high}. You have ${chances - i} chance(s) left:`);
+
+                if (userGuess === null) {
+                    // User clicked "Cancel"
+                    alert("Game Over!");
+                    break;
+                }
+
+                userGuess = parseInt(userGuess);
+
+                if (userGuess < correct_ans) {
+                    alert("Correct answer is greater!");
+                } else if (userGuess > correct_ans) {
+                    alert("Correct answer is smaller!");
+                } else if (userGuess === correct_ans) {
+                    alert("You Win!");
+                    userWon = true;
+                    break;
+                }
+            }
+
+            if (!userWon) {
+                alert(`You Lose!`);
+            }
+           
+        });
+    </script>
+    </script>
+</body>
+</html>
